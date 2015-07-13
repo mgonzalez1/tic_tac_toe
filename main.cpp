@@ -10,29 +10,24 @@
 
 using namespace std;
 
-void init_matriz(char matriz[3][3]);
-void print_matriz(char matriz[3][3]);
-char turn_player(char player_name[20], char matriz[3][3], char type);
+void init_matriz();
+void print_matriz();
+void turn_player(char player_name[20], char type);
+void game();
+
+char matriz[3][3];
+char player1[255] = "Player1";
+char player2[255] = "Player2";
 
 int main(){
-    char matriz[3][3];
-    int x,y;
-    bool sw = false;
-    
-    init_matriz(matriz);
-       
-    cout<<endl<<"Turno del player 1"<<endl;
-    print_matriz(matriz);
-    cout<<endl<<endl<<"Ingrese coordenada a jugar: ";
-    cin>>x;
-    cin>>y;
-    matriz[x-1][y-1] = 'x';
-    print_matriz(matriz);    
+  
+    init_matriz();
+    game();
     
     return 0;
 }
 
-void init_matriz(char matriz[3][3]){
+void init_matriz(){
     for(int i=0;i<3;i++){
         for(int j=0;j<3;j++){
             matriz[i][j] = '*';
@@ -40,7 +35,7 @@ void init_matriz(char matriz[3][3]){
     }
 }
 
-void print_matriz(char matriz[3][3]){
+void print_matriz(){
     cout<<"  1 2 3"<<endl;
     for(int i=0;i<3;i++){
         cout<<i+1<<" ";
@@ -51,20 +46,22 @@ void print_matriz(char matriz[3][3]){
         }
     }
 }
-/*
-char *turn_player(char player_name[20], char matriz[3][3], char type){
+
+void turn_player(char player_name[255],char type){
     int x,y;
-    //char coord[2];
-    
-    cout<<"Turno del player: "<<player_name<<endl;
-    print_matriz(matriz);
-    cout<<"Ingrese coordenada a jugar: ";
+    cout<<endl<<"Turno de: "<<player_name<<endl;
+    print_matriz();
+    cout<<endl<<endl<<"Ingrese coordenada a jugar: ";
     cin>>x;
     cin>>y;
-    //cin>>coord;
-    //x = coord[0] + "0";
-    //y = coord[1] + "0";
-    matriz[x][y] = type;
-    return matriz;
+    matriz[x-1][y-1] = type;
+    print_matriz();
+    cout<<"Presione ENTER para continuar...";
+    getwchar();
+    getwchar();
 }
-*/
+
+void game(){
+    turn_player(player1,'X'); 
+    turn_player(player2,'O');
+}

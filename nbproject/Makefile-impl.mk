@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=vieja
+PROJECTNAME=tic_tac_toe
 
 # Active Configuration
 DEFAULTCONF=Debug
