@@ -54,7 +54,7 @@ void turn_player(char player_name[255], char type){
     int x,y;
     cout<<endl<<"Turno de: "<<player_name<<endl;
     print_matriz();
-    cout<<endl<<endl<<"Ingrese coordenada a jugar: ";
+    cout<<endl<<"Ingrese coordenada a jugar: ";
     cin>>x;
     cin>>y;
     matriz[x-1][y-1] = type;
@@ -72,9 +72,11 @@ void game(){
 
 void select_turn(){
     int turn, numRand;
-    char option;
+    char option, name[255];
     bool sw;
     
+    cout<<"Como te llamas?"<<endl;
+    fgets(name, sizeof(name), stdin);
     do{
         cout<<"Cara o Sello?"<<endl;
         cout<<"Escriba 'C' si es cara | 'S' si es sello"<<endl;
@@ -103,26 +105,26 @@ void select_turn(){
         cout<<"Salio Cara"<<endl;
         if(turn == 0){
             cout<<"Felicidades comienzas primero!"<<endl;
-            strcpy(player1,"Player");
+            strcpy(player1,name);
             strcpy(player2,"CPU");
         }
         else{
             cout<<"Comienzas segundo"<<endl;
             strcpy(player1,"CPU");
-            strcpy(player2,"Player");
+            strcpy(player2,name);
         }
     }
     else if(numRand == 1){
         cout<<"Salio Sello"<<endl;
         if(turn == 1){
             cout<<"Felicidades comienzas primero!"<<endl;
-            strcpy(player1,"Player");
+            strcpy(player1,name);
             strcpy(player2,"CPU");
         }
         else{
             cout<<"Comienzas segundo"<<endl;
             strcpy(player1,"CPU");
-            strcpy(player2,"Player");
+            strcpy(player2,name);
         }
     }
 }
