@@ -18,6 +18,7 @@ void print_matriz();
 void turn_player(char player_name[255], char type);
 void game();
 void select_turn();
+bool checkWinner(char type);
 
 char matriz[3][3];
 int hora = time(NULL);
@@ -52,10 +53,12 @@ void print_matriz(){
 
 void turn_player(char player_name[255], char type){
     int x,y;
-    cout<<endl<<"Turno de: "<<player_name<<endl;
+    cout<<"Turno de: "<<player_name<<endl;
     print_matriz();
-    cout<<endl<<"Ingrese coordenada a jugar: ";
+    cout<<endl<<"Ingrese coordenada (x,y) a jugar"<<endl;
+    cout<<"Coordenada (x): ";
     cin>>x;
+    cout<<"Coordenada (y): ";
     cin>>y;
     matriz[x-1][y-1] = type;
     print_matriz();
@@ -65,9 +68,18 @@ void turn_player(char player_name[255], char type){
 }
 
 void game(){
+    bool finish = false;
+    int turn = 0;
+    
     select_turn();
-    turn_player(player1,'X'); 
-    turn_player(player2,'O');
+    do{
+        turn_player(player1,'X');
+        //finish = checkWinner('X');
+        turn++;
+        turn_player(player2,'O');
+        //finish = checkWinner('Y');
+        turn++;
+    }while(!finish || turn == 9);
 }
 
 void select_turn(){
@@ -127,4 +139,7 @@ void select_turn(){
             strcpy(player2,name);
         }
     }
+    cout<<"---------------------------------------"<<endl;
 }
+
+//bool checkWinner(char type){}
